@@ -1,6 +1,7 @@
 package ru.poseidonnet.jet_movie_top_bot.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import ru.poseidonnet.jet_movie_top_bot.utils.ParseUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class MessageProcessingService {
@@ -41,7 +43,7 @@ public class MessageProcessingService {
             sender.execute(deleteMessage);
             sender.execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            log.error("Error processing movie message", e);
         }
     }
 

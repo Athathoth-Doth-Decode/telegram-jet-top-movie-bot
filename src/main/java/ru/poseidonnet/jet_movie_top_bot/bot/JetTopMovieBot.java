@@ -9,7 +9,6 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.poseidonnet.jet_movie_top_bot.service.CommandService;
-import ru.poseidonnet.jet_movie_top_bot.service.MessageBackupService;
 import ru.poseidonnet.jet_movie_top_bot.service.MessageProcessingService;
 import ru.poseidonnet.jet_movie_top_bot.service.WaitArgsService;
 import ru.poseidonnet.jet_movie_top_bot.utils.ParseUtils;
@@ -99,7 +98,7 @@ public class JetTopMovieBot extends TelegramLongPollingBot {
         }
         if (messageText.startsWith("willview:")) {
             Integer movieId = ParseUtils.getMovieId(update.getCallbackQuery().getMessage().getText());
-            messageText = "/vote " + messageText.substring("willview:".length()) + ";" + movieId;
+            messageText = "/willview " + movieId;
         }
         return messageText;
     }
