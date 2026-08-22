@@ -3,8 +3,8 @@ telegram:
     token: ${TELEGRAM_BOT_TOKEN}
     name: ${TELEGRAM_BOT_NAME}
     proxy:
-      enabled: ${USE_PROXY:true}
-      host: ${PROXY_HOST:127.0.0.1}
+      enabled: ${USE_PROXY:false}
+      host: ${PROXY_HOST:}
       port: ${PROXY_PORT:3128}
       type: ${PROXY_TYPE:HTTP}
     admin-user-id: ${TELEGRAM_ADMIN_USER_ID:0}
