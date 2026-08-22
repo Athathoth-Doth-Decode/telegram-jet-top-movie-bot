@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PollsContainerService {
@@ -31,6 +33,7 @@ public class PollsContainerService {
     @Transactional
     public void importLegacyBackupIfNeeded() {
         if (backupPath == null || backupPath.isBlank()) {
+            log.info("Legacy backup path is not configured, skipping import");
             return;
         }
 
@@ -42,11 +45,13 @@ public class PollsContainerService {
             """, Long.class);
 
         if (totalRows != null && totalRows > 0) {
+            log.info("Database already contains {} rows, skipping legacy import", totalRows);
             return;
         }
 
         File file = new File(backupPath);
         if (!file.exists() || !file.isFile()) {
+            log.warn("Legacy backup file not found at: {}", backupPath);
             return;
         }
 
@@ -54,6 +59,7 @@ public class PollsContainerService {
             String json = Files.readString(file.toPath());
             Backup backup = MAPPER.readValue(json, Backup.class);
             replaceAllData(backup);
+            log.info("Successfully imported legacy backup from {}", backupPath);
         } catch (Exception e) {
             throw new IllegalStateException("Failed to import legacy backup from " + backupPath, e);
         }
@@ -101,7 +107,7 @@ public class PollsContainerService {
                 movieId
         );
 
-        return result.isEmpty() ? null : result;
+        return result;
     }
 
     public Set<Integer> getLinkedMessages(Integer movieId) {
@@ -198,7 +204,7 @@ public class PollsContainerService {
                 userId, movieId
         );
 
-        if (exists) {
+        if (Boolean.TRUE.equals(exists)) {
             jdbcTemplate.update("""
                 delete from will_view
                 where user_id = ? and movie_id = ?
@@ -238,7 +244,7 @@ public class PollsContainerService {
             where movie_id = ?
             """, Long.class, movieId);
 
-        return count.intValue();
+        return count != null ? count.intValue() : 0;
     }
 
     private void insertMovieMessage(Integer movieId, Integer messageId) {

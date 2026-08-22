@@ -8,7 +8,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import ru.poseidonnet.jet_movie_top_bot.kinopoisk.model.KinopoiskResponse;
 import ru.poseidonnet.jet_movie_top_bot.service.MovieLinkCacheService;
 import ru.poseidonnet.jet_movie_top_bot.service.PollsContainerService;
-import ru.poseidonnet.jet_movie_top_bot.utils.FormatUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;

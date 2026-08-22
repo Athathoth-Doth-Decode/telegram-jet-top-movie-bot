@@ -1,6 +1,7 @@
 package ru.poseidonnet.jet_movie_top_bot.command;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultAbsSender;
@@ -16,6 +17,7 @@ import ru.poseidonnet.jet_movie_top_bot.service.WaitArgsService;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class Find implements Command {
@@ -34,7 +36,7 @@ public class Find implements Command {
         }
 
         KinopoiskResponse byName = movieFeignClient.findByName(apiKey, MovieFeignClient.DAFAULT_FIELDS, commandArgs);
-        System.out.println(byName);
+        log.debug("Kinopoisk search result: {}", byName);
         if (byName.getTotal() == 0) {
             sendMessage(sender, update, "Ничего не найдено");
             return;

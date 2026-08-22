@@ -24,7 +24,7 @@ public class ButtonsService {
     public void reindexPollButtons(List<InlineKeyboardButton> buttons, Integer movieId) {
         Map<Integer, AtomicInteger> count = new HashMap<>();
         Map<Long, Integer> moviePolls = pollsContainerService.getMoviePolls(movieId);
-        if (moviePolls == null) {
+        if (moviePolls.isEmpty()) {
             return;
         }
         for (Integer pollRate : moviePolls.values()) {
