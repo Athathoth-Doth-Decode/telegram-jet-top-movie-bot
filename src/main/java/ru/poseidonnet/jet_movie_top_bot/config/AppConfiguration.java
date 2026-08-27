@@ -34,8 +34,6 @@ public class AppConfiguration {
             options.setProxyHost(proxyHost);
             options.setProxyPort(proxyPort);
             options.setProxyType(DefaultBotOptions.ProxyType.valueOf(proxyType.toUpperCase()));
-            options.setConnectionTimeout(60000);
-            options.setMaxSubRouting(10);
             log.info("Proxy configured: {}:{} ({})", proxyHost, proxyPort, proxyType);
         } else {
             log.info("Proxy is disabled, connecting directly");
