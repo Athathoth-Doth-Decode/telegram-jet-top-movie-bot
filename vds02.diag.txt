@@ -1,0 +1,248 @@
+Welcome to Termux
+
+Docs:       https://doc.termux.com
+Community:  https://community.termux.com
+
+Working with packages:
+ - Search:  pkg search <query>
+ - Install: pkg install <package>
+ - Upgrade: pkg upgrade
+
+Report issues at https://bugs.termux.com
+➜  ~ ssh vds02.trak.spb.ru
+^V^C
+➜  ~ ssh awg-vds-02
+^C
+➜  ~ ssh awg-vds-02
+
+^C
+➜  ~ ssh awg-vds-02
+^C
+➜  ~ ssh awg-vds-02
+^C
+^C
+➜  ~ ssh awg-vds-02
+^C
+➜  ~ ssh vds-02
+ssh: Could not resolve hostname vds-02: No address associated with hostn
+ame
+➜  ~ ssh vds02.trak.spb.ru
+Linux vds02.athathoth.expert 6.1.0-38-amd64 #1 SMP PREEMPT_DYNAMIC Debia
+n 6.1.147-1 (2025-08-02) x86_64
+
+The programs included with the Debian GNU/Linux system are free software
+;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sat Aug 22 14:20:34 2026 from 5.34.179.98
+root@vds02:~# vi /usr/local/3proxy/conf/3proxy.cfg
+root@vds02:~# systemctl restart awg-quick@awg0
+root@vds02:~# Shared connection to vds02.trak.spb.ru closed.
+➜  ~ ssh vds02.trak.spb.ru
+^C
+➜  ~ ssh awg-vds-02
+^C
+➜  ~ ssh app-03
+Linux app-03 6.12.73+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.73-1
+ (2026-02-17) x86_64
+
+The programs included with the Debian GNU/Linux system are free software
+;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Mon Aug 17 17:24:26 2026 from 10.251.0.150
+root@app-03:~#
+выход
+Shared connection to 10.254.3.58 closed.
+➜  ~ ssh trak@app-03
+trak@10.254.3.58's password:
+Linux app-03 6.12.73+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.73-1
+ (2026-02-17) x86_64
+
+The programs included with the Debian GNU/Linux system are free software
+;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri Aug 21 10:15:19 2026 from 10.251.0.64
+➜  ~ ssh awg-vds-02
+Linux vds02.athathoth.expert 6.1.0-38-amd64 #1 SMP PREEMPT_DYNAMIC Debia
+n 6.1.147-1 (2025-08-02) x86_64
+
+The programs included with the Debian GNU/Linux system are free software
+;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sat Aug 22 14:34:32 2026 from 5.34.179.98
+root@vds02:~# nft list ruleset
+table ip sshguard {
+        set attackers {
+                type ipv4_addr
+                flags interval
+                elements = { 2.57.121.25, 2.57.121.112,
+                             2.57.122.150, 2.57.122.168,
+                             2.57.122.209, 2.57.122.238,
+                             9.223.176.221, 14.63.196.175,
+                             14.116.156.100, 20.193.141.133,
+                             20.240.241.205, 27.110.166.67,
+                             34.58.124.191, 34.91.0.68,
+                             35.210.61.208, 36.93.249.106,
+                             36.103.243.179, 40.83.182.122,
+                             41.128.181.199, 41.216.177.55,
+                             43.130.90.166, 43.154.195.142,
+                             45.61.187.220, 45.64.74.51,
+                             45.148.10.121, 45.148.10.141,
+                             45.148.10.147, 45.148.10.151,
+                             45.148.10.152, 45.148.10.157,
+                             45.148.10.183, 45.148.10.240,
+                             45.156.87.34, 45.156.87.166,
+                             45.195.221.26, 45.227.254.170,
+                             46.24.47.94, 49.247.37.22,
+                             52.224.109.126, 58.69.56.44,
+                             58.209.82.184, 58.222.244.226,
+                             59.12.160.91, 60.199.224.55,
+                             61.222.211.114, 62.60.130.201,
+                             62.60.130.242, 72.17.34.38,
+                             77.87.40.114, 77.90.185.20,
+                             78.89.154.59, 80.94.92.55,
+                             80.94.92.179, 80.94.92.182,
+                             80.94.92.234, 80.94.95.115,
+                             80.94.95.116, 81.23.173.32,
+                             81.192.46.32, 81.192.46.36,
+                             81.192.46.49, 81.211.72.167,
+                             88.147.30.59, 88.205.172.170,
+                             89.47.53.19, 92.27.101.99,
+                             92.118.39.14, 92.118.39.49,
+                             92.118.39.71, 92.118.39.77,
+                             95.58.255.251, 99.92.204.98,
+                             101.76.248.214, 102.88.137.80,
+                             102.88.137.213, 102.211.152.138,
+                             103.20.122.54, 103.86.198.253,
+                             103.143.238.100, 103.153.190.105,
+                             103.157.149.14, 103.168.135.187,
+                             103.183.62.1, 103.183.62.2,
+                             103.183.62.3, 103.187.147.214,
+                             103.191.14.210, 103.213.238.91,
+                             103.237.144.204, 104.208.108.166,
+                             111.68.98.152, 111.238.174.6,
+                             113.193.234.210, 117.50.70.125,
+                             118.122.147.195, 119.53.253.2,
+                             119.96.159.237, 121.142.87.218,
+                             122.168.194.41, 125.21.59.218,
+                             125.31.2.160, 125.142.37.91,
+                             143.110.241.64, 150.5.169.176,
+                             155.4.245.222, 160.251.169.213,
+                             161.49.89.39, 165.154.205.128,
+                             172.185.24.228, 172.208.48.177,
+                             173.249.52.138, 176.53.159.197,
+                             176.53.159.198, 177.53.215.134,
+                             177.126.132.44, 177.229.197.38,
+                             178.185.136.57, 179.33.210.213,
+                             179.51.153.37, 182.43.235.218,
+                             182.93.7.194, 182.93.50.90,
+                             185.156.73.233, 185.158.22.150,
+                             186.31.95.163, 187.16.96.250,
+                             187.62.87.27, 187.174.238.116,
+                             189.50.142.82, 189.203.163.10,
+                             190.119.63.98, 190.167.237.191,
+                             193.24.211.204, 193.46.255.86,
+                             193.47.62.69, 193.233.48.169,
+                             194.190.153.226, 195.178.110.137,
+                             195.178.110.217, 195.178.110.228,
+                             195.178.110.232, 196.189.155.89,
+                             197.5.145.102, 197.5.145.150,
+                             197.199.224.52, 198.98.56.227,
+                             198.98.62.211, 202.51.214.99,
+                             202.103.55.158, 202.105.98.252,
+                             202.152.201.166, 203.145.143.163,
+                             203.192.232.180, 211.20.14.156,
+                             211.225.139.200, 211.253.9.49,
+                             211.253.31.30, 212.154.234.9,
+                             217.154.38.181, 218.13.26.42,
+                             218.78.46.81, 220.247.224.226,
+                             222.232.176.7 }
+        }
+
+        chain blacklist {
+                type filter hook input priority filter - 10; policy acce
+pt;
+                ip saddr @attackers drop
+        }
+}
+table ip6 sshguard {
+        set attackers {
+                type ipv6_addr
+                flags interval
+        }
+
+        chain blacklist {
+                type filter hook input priority filter - 10; policy acce
+pt;
+                ip6 saddr @attackers drop
+        }
+}
+# Warning: table ip filter is managed by iptables-nft, do not touch!
+table ip filter {
+        chain INPUT {
+                type filter hook input priority filter; policy accept;
+                ip saddr 93.100.131.244 tcp dport 3128 counter packets 4
+557636 bytes 5525068396 accept
+                tcp dport 3128 counter packets 198369 bytes 10316342 dro
+p
+                udp dport 59777 ct state new counter packets 0 bytes 0 a
+ccept
+        }
+
+        chain FORWARD {
+                type filter hook forward priority filter; policy accept;
+                iifname "ens3" oifname "awg0" counter packets 283 bytes 
+99984 accept
+                iifname "awg0" counter packets 282 bytes 34891 accept
+        }
+}
+# Warning: table ip nat is managed by iptables-nft, do not touch!
+table ip nat {
+        chain POSTROUTING {
+                type nat hook postrouting priority srcnat; policy accept
+;
+                oifname "ens3" counter packets 44 bytes 2659 masquerade
+        }
+}
+table ip6 filter {
+        chain FORWARD {
+                type filter hook forward priority filter; policy accept;
+                iifname "awg0" counter packets 5116 bytes 618452 accept
+        }
+}
+# Warning: table ip6 nat is managed by iptables-nft, do not touch!
+table ip6 nat {
+        chain POSTROUTING {
+                type nat hook postrouting priority srcnat; policy accept
+;
+                oifname "ens3" counter packets 54 bytes 11496 XT target 
+MASQUERADE not found
+
+        }
+}
+root@vds02:~# ss -nlp | grep 3proxy
+tcp   LISTEN 0      13                                        0.0.0.0:31
+32             0.0.0.0:*    users:(("3proxy",pid=79911,fd=10))          
+
+tcp   LISTEN 0      13                                        0.0.0.0:31
+28             0.0.0.0:*    users:(("3proxy",pid=79911,fd=8))           
+
+tcp   LISTEN 0      13                                        0.0.0.0:31
+30             0.0.0.0:*    users:(("3proxy",pid=79911,fd=3))           
+
+root@vds02:~#

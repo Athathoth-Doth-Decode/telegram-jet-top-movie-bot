@@ -108,4 +108,9 @@ public class JetTopMovieBot extends TelegramLongPollingBot {
         return name;
     }
 
+    @Override
+    public DefaultBotOptions getOptions() {
+        return super.getOptions();
+    }
+
 }
