@@ -108,4 +108,9 @@ public class JetTopMovieBot extends TelegramLongPollingBot {
         return name;
     }
 
+    @Override
+    public void clearWebhook() {
+        log.info("clearWebhook bypassed for long-polling bot");
+    }
+
 }
