@@ -1,5 +1,6 @@
 package ru.poseidonnet.jet_movie_top_bot.command;
 
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +12,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import ru.poseidonnet.jet_movie_top_bot.kinopoisk.api.MovieFeignClient;
 import ru.poseidonnet.jet_movie_top_bot.kinopoisk.model.KinopoiskResponse;
-import ru.poseidonnet.jet_movie_top_bot.service.MovieLinkCacheService;
 import ru.poseidonnet.jet_movie_top_bot.service.WaitArgsService;
 
 import java.util.ArrayList;
@@ -35,7 +35,17 @@ public class Find implements Command {
             commandArgs = waitArgsService.waitForArgs(update.getMessage().getFrom().getId(), 60);
         }
 
-        KinopoiskResponse byName = movieFeignClient.findByName(apiKey, MovieFeignClient.DAFAULT_FIELDS, commandArgs);
+        KinopoiskResponse byName;
+        try {
+            byName = movieFeignClient.findByName(apiKey, MovieFeignClient.DAFAULT_FIELDS, commandArgs);
+        } catch (FeignException e) {
+            // Avoid logging request headers, which contain the API key.
+            String reason = e.getCause() == null
+                    ? e.getClass().getSimpleName() : e.getCause().getClass().getSimpleName();
+            log.warn("Movie search failed: {} (status {})", reason, e.status());
+            sendMessage(sender, update, "Сервис поиска временно недоступен, попробуйте позже.");
+            return;
+        }
         log.debug("Kinopoisk search result: {}", byName);
         if (byName.getTotal() == 0) {
             sendMessage(sender, update, "Ничего не найдено");
