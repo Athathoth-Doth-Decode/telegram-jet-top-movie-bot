@@ -10,8 +10,16 @@ telegram:
     admin-user-id: ${TELEGRAM_ADMIN_USER_ID:0}
 
 kinopoisk:
-  url: https://api.kinopoisk.dev
+  url: ${KINOPOISK_URL:https://api.poiskkino.dev}
   token: ${KINOPOISK_TOKEN}
+
+feign:
+  client:
+    config:
+      kinopoisk-movie:
+        connectTimeout: 3000
+        readTimeout: 5000
+        retryer: ru.poseidonnet.jet_movie_top_bot.kinopoisk.api.MovieApiRetryer
 
 spring:
   datasource:
