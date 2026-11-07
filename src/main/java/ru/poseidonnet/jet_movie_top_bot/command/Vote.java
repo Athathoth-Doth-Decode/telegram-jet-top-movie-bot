@@ -26,7 +26,9 @@ public class Vote implements Command {
     public void process(DefaultAbsSender sender, Update update, String commandArgs) throws Exception {
         CallbackQuery callbackQuery = update.getCallbackQuery();
         Long userId = callbackQuery.getFrom().getId();
-        Message message = callbackQuery.getMessage();
+        if (!(callbackQuery.getMessage() instanceof Message message)) {
+            return;
+        }
         String[] args = commandArgs.split(";");
         int pollRate = Integer.parseInt(args[0]);
         Integer movieId = Integer.parseInt(args[1]);

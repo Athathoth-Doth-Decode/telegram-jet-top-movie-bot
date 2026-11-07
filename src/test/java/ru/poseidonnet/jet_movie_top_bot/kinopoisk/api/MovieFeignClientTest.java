@@ -7,7 +7,7 @@ import feign.Response;
 import feign.RetryableException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
-import org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration;
+import org.springframework.boot.http.converter.autoconfigure.HttpMessageConvertersAutoConfiguration;
 import org.springframework.boot.test.context.ConfigDataApplicationContextInitializer;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -132,7 +132,7 @@ class MovieFeignClientTest {
     private RetryableException failure(Request.HttpMethod method) {
         Request request = Request.create(method, "https://api.poiskkino.dev/v1.3/movie",
                 Map.of(), (byte[]) null, null, null);
-        return new RetryableException(-1, "network failure", method, new IOException(), null, request);
+        return new RetryableException(-1, "network failure", method, new IOException(), (Long) null, request);
     }
 
     private Response response(Request request, int status, Map<String, java.util.Collection<String>> headers,

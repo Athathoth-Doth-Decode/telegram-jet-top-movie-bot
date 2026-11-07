@@ -51,8 +51,11 @@ public class JetTopMovieBot extends TelegramLongPollingBot {
         try {
             String messageText = null;
             if (update.getCallbackQuery() != null) {
+                if (!(update.getCallbackQuery().getMessage() instanceof Message callbackMessage)) {
+                    return; // Telegram can send callbacks for deleted or inaccessible messages.
+                }
                 messageText = update.getCallbackQuery().getData();
-                messageText = transformCallbackMessage(update, messageText);
+                messageText = transformCallbackMessage(callbackMessage, messageText);
             }
             Message message = update.getMessage();
             if (message != null) {
@@ -91,13 +94,13 @@ public class JetTopMovieBot extends TelegramLongPollingBot {
     }
 
     @NotNull
-    private String transformCallbackMessage(Update update, String messageText) {
+    private String transformCallbackMessage(Message message, String messageText) {
         if (messageText.startsWith("vote:")) {
-            Integer movieId = ParseUtils.getMovieId(update.getCallbackQuery().getMessage().getText());
+            Integer movieId = ParseUtils.getMovieId(message.getText());
             messageText = "/vote " + messageText.substring("vote:".length()) + ";" + movieId;
         }
         if (messageText.startsWith("willview:")) {
-            Integer movieId = ParseUtils.getMovieId(update.getCallbackQuery().getMessage().getText());
+            Integer movieId = ParseUtils.getMovieId(message.getText());
             messageText = "/willview " + movieId;
         }
         return messageText;

@@ -75,7 +75,7 @@ class FindTest {
         Request request = request();
         when(api.findByName(isNull(), anyList(), anyString())).thenThrow(new RetryableException(
                 -1, "DNS failure", Request.HttpMethod.GET,
-                new UnknownHostException("api.poiskkino.dev"), null, request));
+                new UnknownHostException("api.poiskkino.dev"), (Long) null, request));
         assertUnavailableMessage();
     }
 

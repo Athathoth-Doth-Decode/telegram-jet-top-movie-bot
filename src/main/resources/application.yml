@@ -1,5 +1,6 @@
 telegram:
   bot:
+    enabled: ${TELEGRAM_BOT_ENABLED:true}
     token: ${TELEGRAM_BOT_TOKEN}
     name: ${TELEGRAM_BOT_NAME}
     proxy:
@@ -13,15 +14,15 @@ kinopoisk:
   url: ${KINOPOISK_URL:https://api.poiskkino.dev}
   token: ${KINOPOISK_TOKEN}
 
-feign:
-  client:
-    config:
-      kinopoisk-movie:
-        connectTimeout: 3000
-        readTimeout: 5000
-        retryer: ru.poseidonnet.jet_movie_top_bot.kinopoisk.api.MovieApiRetryer
-
 spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          kinopoisk-movie:
+            connectTimeout: 3000
+            readTimeout: 5000
+            retryer: ru.poseidonnet.jet_movie_top_bot.kinopoisk.api.MovieApiRetryer
   datasource:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
