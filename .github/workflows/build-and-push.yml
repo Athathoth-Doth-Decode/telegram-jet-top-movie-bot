@@ -2,7 +2,7 @@ name: Build and verify Jet bot image
 
 on:
   push:
-    branches: [main, fix/security-refresh-20261107]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   candidate:
-    if: github.repository == 'Athathoth-Doth-Decode/telegram-jet-top-movie-bot' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix/security-refresh-20261107')
+    if: github.repository == 'Athathoth-Doth-Decode/telegram-jet-top-movie-bot' && github.ref == 'refs/heads/main'
     runs-on: arc-runner-set
     timeout-minutes: 45
     steps:
