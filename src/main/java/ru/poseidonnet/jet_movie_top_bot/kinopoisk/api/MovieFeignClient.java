@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.poseidonnet.jet_movie_top_bot.kinopoisk.model.KinopoiskResponse;
 
-import javax.ws.rs.Consumes;
 import java.util.List;
 
 @FeignClient(value = "kinopoisk-movie", url = "${kinopoisk.url}/v1.3/movie")
@@ -15,8 +14,7 @@ public interface MovieFeignClient {
 
     List<String> DAFAULT_FIELDS = List.of("id", "name", "year");
 
-    @Consumes(MediaType.APPLICATION_JSON_VALUE)
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     KinopoiskResponse findByName(@RequestHeader("X-API-Key") String apiKey,
                                  @RequestParam("selectFields") List<String> selectFields,
                                  @RequestParam("name") String name);

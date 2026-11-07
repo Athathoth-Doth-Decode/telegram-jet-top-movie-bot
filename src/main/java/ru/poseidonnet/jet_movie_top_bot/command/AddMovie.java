@@ -33,7 +33,9 @@ public class AddMovie implements Command {
         if (update.getCallbackQuery().getFrom().getId() != Long.parseLong(args[1])) {
             return;
         }
-        Message message = update.getCallbackQuery().getMessage();
+        if (!(update.getCallbackQuery().getMessage() instanceof Message message)) {
+            return;
+        }
         Long chatId = message.getChatId();
 
         DeleteMessage deleteMessage = new DeleteMessage();

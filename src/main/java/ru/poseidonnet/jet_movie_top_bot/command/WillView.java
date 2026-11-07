@@ -26,7 +26,9 @@ public class WillView implements Command {
     public void process(DefaultAbsSender sender, Update update, String commandArgs) throws Exception {
         CallbackQuery callbackQuery = update.getCallbackQuery();
         Long userId = callbackQuery.getFrom().getId();
-        Message message = callbackQuery.getMessage();
+        if (!(callbackQuery.getMessage() instanceof Message message)) {
+            return;
+        }
         int movieId = Integer.parseInt(commandArgs);
         Long chatId = message.getChatId();
 
